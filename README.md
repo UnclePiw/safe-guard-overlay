@@ -1,73 +1,192 @@
-# Welcome to your Lovable project
+# Safe-Overlay Alert
 
-## Project info
+**ระบบป้องกันการโอนเงินสู่บัญชีม้าระดับ Operating System**
 
-**URL**: https://lovable.dev/projects/REPLACE_WITH_PROJECT_ID
+Safe-Overlay Alert คือโซลูชันเพื่อ User Empowerment ที่ทำหน้าที่เป็น "ด่านหน้า" ก่อนการโอนเงิน โดยมุ่งเน้นการสกัดกั้นความเสี่ยงในระดับ OS ก่อนที่ผู้ใช้จะก้าวเข้าสู่แอปพลิเคชันธนาคาร
 
-## How can I edit this code?
+## ภาพรวมปัญหา
 
-There are several ways of editing your application.
+ระบบตรวจจับการฉ้อโกงแบบดั้งเดิมทำงานหลังจากที่มีการทำธุรกรรมแล้ว เมื่อมีการแจ้งเตือน เงินก็หายไปแล้ว ผู้ประสงค์ร้ายใช้แอปพลิเคชันแชท เช่น LINE และ Messenger ในการแชร์เลขบัญชีม้า โดยเอาเปรียบช่องว่างระหว่างการคัดลอกเลขบัญชีกับการทำธุรกรรมจริง
 
-**Use Lovable**
+## โซลูชัน
 
-Simply visit the [Lovable Project](https://lovable.dev/projects/REPLACE_WITH_PROJECT_ID) and start prompting.
+Safe-Overlay Alert เชื่อมช่องว่างสำคัญนี้ด้วยกลไก Active Prevention ประกอบด้วย:
 
-Changes made via Lovable will be committed automatically to this repo.
+**ตรวจจับ Clipboard แบบเรียลไทม์**  
+ระบบตรวจจับเมื่อมีการคัดลอกเลขบัญชีธนาคารจากแอปพลิเคชันแชทหรือโซเชียลมีเดีย
 
-**Use your preferred IDE**
+**ตรวจสอบ Blacklist ทันที**  
+เช็คกับฐานข้อมูลบัญชีม้าของหน่วยงานรัฐและเครือข่ายธนาคารผ่าน API แบบเรียลไทม์
 
-If you want to work locally using your own IDE, you can clone this repo and push changes. Pushed changes will also be reflected in Lovable.
+**Alert Overlay ระดับ OS**  
+แสดงหน้าต่างเตือนสีแดงโปร่งใสทับหน้าจอเมื่อพบบัญชีอันตราย พร้อมปุ่ม "แจ้งเบาะแส"
 
-The only requirement is having Node.js & npm installed - [install with nvm](https://github.com/nvm-sh/nvm#installing-and-updating)
+**Crowd-sourced Intelligence**  
+ผู้ใช้สามารถแจ้งบัญชีที่น่าสงสัยผ่าน Alert เพื่อป้อนข้อมูลกลับสู่ระบบ สร้างฐานข้อมูลที่แม่นยำยิ่งขึ้น
 
-Follow these steps:
+## จุดเด่นของระบบ
 
-```sh
-# Step 1: Clone the repository using the project's Git URL.
-git clone <YOUR_GIT_URL>
+**Pre-Transaction Protection**  
+หยุดการฉ้อโกงตั้งแต่ต้นทาง ไม่ต้องรอให้เงินออกจากบัญชีก่อน ป้องกันความเสียหายได้ตรงจุดที่สุด
 
-# Step 2: Navigate to the project directory.
-cd <YOUR_PROJECT_NAME>
+**Seamless Experience**  
+ทำงานเบื้องหลังอย่างเงียบ ๆ แสดงตัวเฉพาะเมื่อตรวจพบความเสี่ยง ไม่รบกวนการใช้งานปกติของผู้ใช้
 
-# Step 3: Install the necessary dependencies.
-npm i
+**Cross-Platform Monitoring**  
+แตกต่างจากแอปพลิเคชันธนาคารทั่วไปที่ตรวจสอบได้เฉพาะในแอปตัวเอง Safe-Overlay ทำงานข้ามแพลตฟอร์มทุกแอปพลิเคชัน
 
-# Step 4: Start the development server with auto-reloading and an instant preview.
-npm run dev
+**Strategic Alignment**  
+พัฒนาร่วมกับ KBTG และ Samsung Knox เพื่อความปลอดภัยและการปกป้องข้อมูลส่วนตัวระดับองค์กร สอดคล้องกับนโยบายป้องกันบัญชีม้า
+
+## สถาปัตยกรรมทางเทคนิค
+
+### เทคโนโลยีหลัก
+
+**ClipboardManager**  
+ระบบตรวจสอบ clipboard events สำหรับรูปแบบเลขบัญชีธนาคาร โดยใช้ pattern matching เพื่อระบุเลขบัญชีที่มีโครงสร้างตามมาตรฐานของธนาคารไทย
+
+**Accessibility Service**  
+ให้ความสามารถในการตรวจจับและวิเคราะห์ข้อมูลข้ามแอปพลิเคชัน ทำงานในระดับระบบปฏิบัติการ
+
+**WindowManager**  
+จัดการการแสดงผลแจ้งเตือนแบบ overlay ระดับระบบ สามารถแสดงหน้าต่างเตือนทับทุกแอปพลิเคชัน
+
+**Samsung Knox Integration**  
+บูรณาการกับ Samsung Knox เพื่อขอสิทธิ์การเข้าถึงพิเศษ (Specialized Permissions) สำหรับความปลอดภัยสูงสุดบนอุปกรณ์ที่รองรับ
+
+### ข้อพิจารณาด้านความปลอดภัยและความเป็นส่วนตัว
+
+Safe-Overlay Alert ออกแบบด้วยหลักการ Privacy-First และมีมาตรการดังนี้:
+
+- วิเคราะห์ข้อมูล Clipboard ในเครื่องด้วย Pattern Matching ไม่ส่งข้อมูลทั้งหมดออกไป
+- ส่งเฉพาะเลขบัญชีที่ตรวจพบไปยัง API เพื่อตรวจสอบความเสี่ยง
+- ไม่เก็บบันทึกข้อความส่วนตัวหรือเนื้อหาการสนทนา
+- ทำงานภายใต้กรอบความปลอดภัยของ Samsung Knox
+- ข้อมูลทั้งหมดเข้ารหัสตามมาตรฐาน industry standard
+
+### การบูรณาการ API
+
+ระบบเชื่อมต่อกับ Blacklist Database ผ่าน RESTful API:
+
+```java
+// ตัวอย่าง Endpoint การตรวจสอบบัญชี
+POST /api/v1/verify-account
+{
+  "accountNumber": "xxx-x-xxxxx-x",
+  "timestamp": "2026-01-11T10:30:00Z",
+  "deviceId": "encrypted_device_id"
+}
+
+Response:
+{
+  "isBlacklisted": true,
+  "riskLevel": "HIGH",
+  "reportCount": 47,
+  "lastReported": "2026-01-10T15:20:00Z",
+  "verifiedBy": ["ธนาคารแห่งประเทศไทย", "ตำรวจไซเบอร์"]
+}
 ```
 
-**Edit a file directly in GitHub**
+### ข้อจำกัดทางเทคนิคและแนวทางแก้ไข
 
-- Navigate to the desired file(s).
-- Click the "Edit" button (pencil icon) at the top right of the file view.
-- Make your changes and commit the changes.
+**ข้อจำกัดด้าน Security บน Android รุ่นใหม่**  
+Android เวอร์ชันล่าสุดมีข้อจำกัดเรื่องการเข้าถึง Clipboard และ Overlay Permission
 
-**Use GitHub Codespaces**
+**แนวทางแก้ไข**  
+ใช้ Samsung Knox Specialized Permissions เพื่อขอสิทธิ์ระดับ Enterprise ทำให้สามารถเข้าถึงฟีเจอร์ที่จำเป็นได้อย่างปลอดภัย
 
-- Navigate to the main page of your repository.
-- Click on the "Code" button (green button) near the top right.
-- Select the "Codespaces" tab.
-- Click on "New codespace" to launch a new Codespace environment.
-- Edit files directly within the Codespace and commit and push your changes once you're done.
+## กลไกการทำงาน
 
-## What technologies are used for this project?
+```
+ลำดับขั้นตอนการทำงาน:
+┌─────────────────────────────────────────────────────────┐
+│ 1. ผู้ใช้ได้รับเลขบัญชีผ่านแอปพลิเคชันแชท (LINE)       │
+│ 2. ผู้ใช้คัดลอกเลขบัญชีเพื่อเตรียมโอนเงิน              │
+│ 3. Safe-Overlay ตรวจจับการเปลี่ยนแปลง Clipboard        │
+│ 4. ระบบวิเคราะห์รูปแบบและส่งเลขบัญชีไปตรวจสอบ API      │
+│ 5. หากพบว่าเป็นบัญชีอันตราย แสดง Red Alert Overlay     │
+│ 6. ผู้ใช้สามารถยกเลิกการโอนหรือแจ้งเบาะแสเพิ่มเติม     │
+└─────────────────────────────────────────────────────────┘
+```
 
-This project is built with:
+## นวัตกรรมและความแตกต่าง
 
-- Vite
-- TypeScript
-- React
-- shadcn-ui
-- Tailwind CSS
+### นวัตกรรม
 
-## How can I deploy this project?
+**Zero-Trust User Behavior Approach**  
+เปลี่ยนกระบวนทัศน์จาก Passive Protection (การตรวจจับหลังทำธุรกรรม) เป็น Active Prevention (การเข้าแทรกแซงในจังหวะคัดลอกเลขบัญชี) ซึ่งเป็นการป้องกันตามพฤติกรรมผู้ใช้แบบไม่ไว้วางใจล่วงหน้า
 
-Simply open [Lovable](https://lovable.dev/projects/REPLACE_WITH_PROJECT_ID) and click on Share -> Publish.
+### ความแตกต่างจากระบบที่มีอยู่
 
-## Can I connect a custom domain to my Lovable project?
+**Cross-Application Intelligence**  
+แอปพลิเคชันธนาคารทั่วไปปกป้องได้เฉพาะในระบบนิเวศของตัวเอง Safe-Overlay Alert ตรวจสอบ Clipboard ทั้งระบบข้ามทุกแอปพลิเคชัน ไม่ว่าจะเป็นแอปแชท โซเชียลมีเดีย หรือเบราว์เซอร์
 
-Yes, you can!
+**Strategic Timing**  
+การแจ้งเตือนเกิดขึ้นในจังหวะที่ผู้ใช้กำลังจะตัดสินใจโอนเงิน ซึ่งเป็นจุดวิกฤตที่มีโอกาสป้องกันการฉ้อโกงได้สูงสุด ไม่ใช่การแจ้งเตือนหลังเงินหายแล้ว
 
-To connect a domain, navigate to Project > Settings > Domains and click Connect Domain.
+### ความเป็นไปได้เชิงเทคนิค
 
-Read more here: [Setting up a custom domain](https://docs.lovable.dev/features/custom-domain#custom-domain)
+ระบบใช้ ClipboardManager และ Accessibility Service ของ Android ในการตรวจจับ และ WindowManager สำหรับ Overlay แม้จะมีข้อจำกัดเรื่อง Security บน OS รุ่นใหม่ แต่สามารถทำงานร่วมกับ Samsung Knox เพื่อขอสิทธิ์การเข้าถึงระดับพิเศษ (Specialized Permissions) เพื่อความปลอดภัยสูงสุด
+
+### ความเป็นไปได้เชิงธุรกิจ
+
+สามารถขยายผลเป็นฟีเจอร์เสริมในแอปพลิเคชัน K PLUS หรือฝังอยู่ใน Samsung One UI สำหรับเครื่องที่จำหน่ายในประเทศไทย เพื่อเป็นจุดขายด้าน Cyber-Safety และสร้างความแตกต่างในตลาด
+
+## ศักยภาพทางธุรกิจ
+
+### โอกาสในการบูรณาการ
+
+**ฟีเจอร์เสริมใน K PLUS**  
+เพิ่มเป็นฟีเจอร์ความปลอดภัยระดับพรีเมียมสำหรับลูกค้ากสิกรไทย สร้างความแตกต่างจากคู่แข่ง
+
+**ติดตั้งล่วงหน้าใน Samsung One UI**  
+บรรจุมาพร้อมกับอุปกรณ์ Samsung ที่จำหน่ายในประเทศไทย เป็นจุดขายด้าน Cyber-Safety สำหรับตลาด B2C
+
+**พาร์ทเนอร์ชิพกับเครือข่ายธนาคาร**  
+สร้างโครงสร้างพื้นฐาน Blacklist Database ร่วมกันระหว่างสถาบันการเงิน เพิ่มความแม่นยำและครอบคลุมทั่วทั้งระบบ
+
+**ความร่วมมือกับภาครัฐ**  
+บูรณาการกับฐานข้อมูลป้องกันการหลอกลวงระดับชาติของธนาคารแห่งประเทศไทยและตำรวจไซเบอร์
+
+### โมเดลรายได้
+
+**B2C (Business to Consumer)**  
+- สมาชิกพรีเมียมสำหรับฟีเจอร์ขั้นสูง เช่น การตรวจสอบประวัติบัญชีย้อนหลัง
+- In-app purchase สำหรับฟีเจอร์เสริม
+
+**B2B (Business to Business)**  
+- ใบอนุญาตองค์กรสำหรับธนาคารและสถาบันการเงิน
+- White-label solution สำหรับสถาบันการเงินที่ต้องการนำไปใช้ภายใต้แบรนด์ตัวเอง
+
+**B2G (Business to Government)**  
+- สัญญากับภาครัฐเพื่อระบบป้องกันการฉ้อโกงระดับชาติ
+- บริการให้คำปรึกษาและพัฒนาระบบแก่หน่วยงานราชการ
+
+## แผนพัฒนาระบบ
+
+### Phase 1: MVP Development
+- พัฒนาระบบตรวจสอบ Clipboard พื้นฐาน
+- สร้าง Blacklist Database ในเครื่องสำหรับการทดสอบ
+- ออกแบบ UI/UX สำหรับ Alert Overlay
+- ทดสอบกับกลุ่มผู้ใช้จำนวนจำกัด
+
+### Phase 2: API Integration
+- บูรณาการ API กับเครือข่ายธนาคาร
+- เชื่อมต่อกับฐานข้อมูลของหน่วยงานรัฐ
+- พัฒนาระบบรายงานและแจ้งเบาะแส
+- ทดสอบความเร็วและความแม่นยำของระบบ
+
+### Phase 3: Samsung Knox Implementation
+- ขอสิทธิ์พิเศษผ่าน Samsung Knox Partnership
+- พัฒนาฟีเจอร์ขั้นสูงที่ต้องใช้ Enterprise Permission
+- Optimize performance สำหรับอุปกรณ์ Samsung
+
+### Phase 4: Advanced Features
+- พัฒนา Machine Learning Model สำหรับการจดจำรูปแบบที่ซับซ้อน
+- เพิ่มความสามารถในการตรวจจับบัญชีปลอมรูปแบบใหม่
+- รองรับหลายภาษา (ไทย, อังกฤษ, จีน)
+
+### Phase 5: Platform Expansion
+- พัฒนาเวอร์ชัน iOS
+- สร้าง Web Dashboard สำหรับการจัดการและวิเคราะห์ข้อมูล
+- ขยายไปยังประเทศอื่นในภูมิภาคเอเชียตะวันออกเฉียงใต้
